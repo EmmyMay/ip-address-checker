@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="intro">
+      <h1 class="i-title">Check A Website's IP Address</h1>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -15,18 +14,13 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+#intro {
+  .i-title {
+    font-size: 2em;
   }
 }
 </style>
