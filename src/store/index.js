@@ -22,7 +22,7 @@ export default createStore({
     async fetchIP({
       commit
     }, payload) {
-      let res = await axios.post('http://localhost:3000/siteIp', payload);
+      let res = await axios.post('https://dns-checker.herokuapp.com/siteIp', payload);
       // console.log(res.data);
       commit('SET_URL', res.data);
     }
