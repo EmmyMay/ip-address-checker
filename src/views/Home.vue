@@ -21,7 +21,7 @@
       </div>
     </form>
     <div v-if="data.searching" class="lds-hourglass"></div>
-    <div class="result">
+    <div v-if="data.siteInfo != null" class="result">
       The IP Address for
       <span class="url">{{data.siteInfo.url}}</span>
       is
@@ -53,15 +53,10 @@ export default {
       });
     }
 
-    function submitURLL() {
-      console.log(data.siteInfo);
-    }
     // expose to template
     return {
       data,
       submitURL,
-
-      submitURLL,
     };
   },
   computed: {

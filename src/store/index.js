@@ -15,7 +15,7 @@ export default createStore({
   mutations: {
     SET_URL(state, data) {
       state.dnsData = data;
-      console.log(state.dnsData);
+
     }
   },
   actions: {
