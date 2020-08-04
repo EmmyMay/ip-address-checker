@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-ash shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="home bg-ash shadow-md rounded px-8 pt-6 pb-8 mb-4 h-auto">
     <form>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">URL</label>
@@ -21,11 +21,11 @@
       </div>
     </form>
     <div v-if="data.searching" class="lds-hourglass"></div>
-    <div v-if="data.siteInfo != null" class="result">
-      The IP Address for
-      <span class="url">{{data.siteInfo.url}}</span>
-      is
-      <span class="urlData">{{data.siteInfo.urlData}}</span>
+    <div v-if="data.siteInfo != null" class="result mt-5">
+      <p class="result-text mb-5">The IP Address for</p>
+      <p class="url">{{data.siteInfo.url}}</p>
+      <p class="result-text mt-3 mb-3">is</p>
+      <p class="urlData">{{data.siteInfo.urlData}}</p>
     </div>
   </div>
 </template>
@@ -66,30 +66,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  height: 50vh;
-}
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 .url {
   background-color: rgb(11, 141, 216);
   padding: 0.5rem;
+  font-family: "Fredoka One", cursive;
+  color: black;
+  font-size: 1rem;
 }
 .urlData {
   background-color: rgb(209, 18, 136);
-  padding: 0.5rem;
+  padding: 0.1rem;
   font-size: 2rem;
+  font-family: "Fredoka One", cursive;
+  color: black;
 }
-@media only screen and (max-width: 500px) {
+.result-text {
+  font-family: "Pacifico", cursive;
+  color: black;
+  font-size: 1.4rem;
+}
+@media only screen and (min-width: 700px) {
   .urlData {
-    background-color: rgb(209, 18, 136);
-    padding: 0.1rem;
-    margin-bottom: 5rem;
-    font-size: 2rem;
+    width: 40%;
+    margin: 0 auto;
+  }
+  .url {
+    width: 40%;
+    margin: 0 auto;
   }
   .result {
-    margin-top: 2rem;
-    letter-spacing: 0.3rem;
+    display: flex;
+    flex-direction: column;
   }
 }
+
 .lds-hourglass {
   display: inline-block;
   position: relative;

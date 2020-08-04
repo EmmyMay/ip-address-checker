@@ -21,6 +21,14 @@
 #intro {
   .i-title {
     font-size: 2em;
+    color: black;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #intro {
+    .i-title {
+      font-size: 1.2em;
+    }
   }
 }
 </style>
