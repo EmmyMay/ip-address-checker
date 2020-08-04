@@ -27,6 +27,7 @@
       <p class="result-text mt-3 mb-3">is</p>
       <p class="urlData">{{data.siteInfo.urlData}}</p>
     </div>
+    <p v-if="data.showWarning">{{data.warning}}</p>
   </div>
 </template>
 
@@ -39,21 +40,37 @@ export default {
   name: "Home",
   components: {},
   setup() {
+    //Made an object reactive and saved into a const using Composition API
     const data = reactive({
-      siteInfo: null,
-      searching: false,
-      url: "",
+      siteInfo: null, //this would be an object that holds API server response.
+      searching: false, //this is to control the spinner
+      url: "", //this is the data property that v-models the input
+      warning: "", //this is to hold the warning message
+      showWarning: false, //this is to control the rendering of the warning message
     });
 
+    // This function holds the submit logic after a url has been entered
     function submitURL() {
       data.searching = true;
-      this.$store.dispatch("fetchIP", { url: data.url }).then(() => {
-        this.data.siteInfo = this.getdnsdata;
-        data.searching = false;
-      });
+      // this conditional checks if input is not an empty string
+      if (data.url != "") {
+        data.showWarning = false;
+
+        //this dispatches an action in the store
+        this.$store.dispatch("fetchIP", { url: data.url }).then(() => {
+          // then sets the composition API's siteInfo data property to a vuex getters value
+          // The getter is mapped in via the computed option in the options API below.
+          this.data.siteInfo = this.getdnsdata;
+          data.searching = false;
+        });
+      } else {
+        data.warning = "Enter a website's address";
+        data.showWarning = true;
+        data.siteInfo = null;
+      }
     }
 
-    // expose to template
+    // all the composition API's variables have to be returned as an object
     return {
       data,
       submitURL,
